@@ -1,0 +1,14 @@
+Change Log
+
+pb02:
+Fixed U3B5 bugs.
+Fixed VertexColor node.
+Added SceneDepth node - Get the depth of the scene behind the surface that is being rendered.
+Added DepthBlend node - Get a blend value based on the scene depth and the current surface depth. Good for fading water out as it gets closer to a solid surface.
+Added SceneColor node - Get the color of the scene behind the surface that is being rendered.
+Added some code to clean up node creation (InputValue(inputIndex:int) and InputValueOrThis(inputIndex:int, defaultValue:String)).
+Added WorldNormal node because transforming from object to world in the frag shader seems to be broken in the current unity version. This is cheaper anyway though.
+Added Clamp node - clamps any datatype to a range of 0-1.
+Fixed a bug that would cause the shader files to add extra blank lines to the file every time it was saved.
+Added ScreenPos node and changed the functionality of ScreenUVs node. Before ScreenUVs would return the position in screen space and need to be divided by ScreenUVs.w to give correct screenspace uvs. Now it gives correct uvs directly. ScreenPos does what ScreenUVs used to do.
+Removed LightColor node.

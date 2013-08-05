@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{48C7A160-EFD8-687E-6F09-4B2C347CB448}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-UnityScript-Editor</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_WEBPLAYER;WEBPLUG;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_0_0;UNITY_4_0;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="UnityEngine">
+	  <HintPath>D:/Program Files (x86)/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>D:/Program Files (x86)/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\MaterialEditor.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\MaterialNode.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\MaterialNodeSocket.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\MaterialNodeTagInfo.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\MaterialShaderGen.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Abs.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Add.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Ceil.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Clamp.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Constant.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_ConstantColor.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Cosine.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Cross.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_DepthBlend.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_DisplaceOffset.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Distance.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Divide.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Dot.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_ElementOf.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_FloatToVector.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Floor.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Fmod.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Frac.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Fresnel.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_GlobalVector.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Highest.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_If.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_InterlaceAlpha.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Interpolate.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_LightColor.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_LightDir.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Lowest.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_MVP.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_MVPV3.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Master.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Multiply.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Normalize.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_ObjToWorld.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_ObjToWorldV3.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_ParamColor.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_ParamConstant.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_ParamFloat.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_ParamVector4.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Position.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Power.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Reflect.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_SceneColor.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_SceneDepth.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Screen.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_ScreenPos.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_ScreenUVs.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_SquareRoot.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Step.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Subtract.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_SurfaceNormal.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_TextureCubeMap.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_TextureLightmap.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_TextureMain.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_TextureNormalMap.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_TextureSample.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_TextureWithXForm.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Time.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_TimeSeconds.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Transform.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_UV1.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_UV2.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_UnpackNormal.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Vector2.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Vector3.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Vector4.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_Vector4InvertY.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_VectorW.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_VectorX.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_VectorXY.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_VectorXYZ.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_VectorY.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_VectorZ.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_VertexColor.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_ViewDir.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_ViewDirT.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_WorldNormal.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_WorldToObj.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_WorldToObjV3.js" />
+     <Compile Include="Assets\ProTools\Editor\MaterialTools\Nodes\MaterialNode_sine.js" />
+     <None Include="Assets\Shaders\Nucleo.shader" />
+     <None Include="Assets\Modelos Finais\3DtextShader.shader" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\ProTools\Editor\MaterialTools\ShaderCodeTemplates\Lighting_HalfLambertSpec.txt" />
+     <None Include="Assets\ProTools\Editor\MaterialTools\InitFile.txt" />
+     <None Include="Assets\ProTools\Editor\MaterialTools\ChangeLog.txt" />
+     <None Include="Assets\ProTools\Editor\MaterialTools\ShaderCodeTemplates\DefaultShader.txt" />
+     <None Include="Assets\ProTools\Editor\MaterialTools\DefaultFallbacks\ShaderFusionDefaultFallback.shader" />
+     <None Include="Assets\ProTools\Editor\MaterialTools\ShaderCodeTemplates\DefaultShaderDeferred.txt" />
+     <None Include="Assets\ProTools\Editor\MaterialTools\ShaderCodeTemplates\Lighting_Default.txt" />
+ <Reference Include="Assembly-UnityScript">
+ <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>D:\Program Files (x86)\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>

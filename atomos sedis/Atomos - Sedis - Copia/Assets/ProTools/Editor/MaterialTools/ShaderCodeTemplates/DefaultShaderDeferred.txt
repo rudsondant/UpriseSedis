@@ -1,0 +1,59 @@
+//#EditorFriendly
+
+//#ShaderName
+	Properties {
+_Color ("Diffuse Color", Color) = (1.0, 1.0, 1.0, 1.0)
+_SpecColor ("Specular Color", Color) = (1.0, 1.0, 1.0, 1.0)
+_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
+//#ShaderProperties
+	}
+
+	Category {
+		SubShader { 
+//#Blend
+//#CatTags
+			//Tags { "RenderType"="Opaque" }
+//#LOD
+			LOD 400
+//#GrabPass
+		CGPROGRAM
+//#LightingModelTag
+//#TargetSM
+
+//#UnlitCGDefs
+float4 _Color;
+		struct Input {
+		//float4 vertex;
+//#UVDefs
+		INTERNAL_DATA
+		};
+		
+		void vert (inout appdata_full v, out Input o) {
+			//v.vertex.xyz += v.normal * 1.0;
+//#DeferredVertexBody
+			//o.vertex = v.vertex;
+		}
+		void surf (Input IN, inout SurfaceShaderFusion o) {
+			//float3 viewDir = ObjSpaceViewDir(IN.vertex);
+			float4 normal = float4(0.5,0.5,1.0,0.5);
+			float3 emissive = 0.0;
+			float3 specular = 1.0;
+			float gloss = 1.0;
+			float3 diffuse = 1.0;
+			float alpha = 1.0;
+//#PreFragBody
+//#FragBody
+			
+			o.Albedo = diffuse.rgb*_Color;
+			o.Emission = emissive*_Color;
+			o.GlossColor = specular*_SpecColor;//They are inverted O_o?
+			o.Alpha = alpha;
+			o.Specular = gloss;
+			o.Normal = UnpackNormal(normal);
+		}
+		ENDCG
+		}
+	}
+	//FallBack "Specular"
+	FallBack "Transparent/Cutout/VertexLit"
+}

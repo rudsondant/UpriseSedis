@@ -1,0 +1,272 @@
+//#EditorFriendly
+
+//#ShaderName
+Properties {
+//#ShaderProperties
+	_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
+	//_Color ("Main Color", Color) = (1,1,1,1)
+	//_SpecColor ("Specular Color", Color) = (0.5, 0.5, 0.5, 1)
+	//_Shininess ("Shininess", Range (0.03, 1)) = 0.078125
+	//_MainTex ("Base (RGB) Gloss (A)", 2D) = "white" {}
+	//_BumpMap ("Bumpmap (RGB)", 2D) = "bump" {}
+}
+
+Category {
+    Fog { Color [_AddFog] }
+//#CatTags
+    SubShader {
+		/////////////////////////////////////////////////////////////////////////////
+        // UnlitDiffuse//////////////////////////////////////////////////////////////
+        Pass {
+//#UnlitBlend
+			//AlphaTest Greater 0.5
+            Tags { "LightMode" = "Always" }
+CGPROGRAM
+//#UnlitTargetSM
+#pragma vertex vert
+#pragma fragment frag
+#pragma multi_compile_builtin
+#pragma fragmentoption ARB_fog_exp2
+#pragma fragmentoption ARB_precision_hint_fastest
+#include "UnityCG.cginc"
+#include "AutoLight.cginc"
+
+struct appdata_fusion {
+    float4 vertex : POSITION;
+    float4 tangent : TANGENT;
+    float3 normal : NORMAL;
+    float2 texcoord : TEXCOORD0;
+	float2 texcoord1 : TEXCOORD1;
+	float4 color : COLOR0;
+};
+
+// Define the structure
+struct v2f {
+    V2F_POS_FOG;
+    LIGHTING_COORDS // <= note no semicolon!
+//#UnlitV2F
+	float4 vertex;
+	float3 normal;
+	float4 tangent;
+	float4 uv;
+	float2 suv;
+	float3 vertexColor;
+};
+
+//#UnlitCGDefs
+//uniform float4 _MainTex_ST;
+//uniform float4 _BumpMap_ST;
+//sampler2D _BumpMap;
+//sampler2D _MainTex;
+
+// Vertex program
+v2f vert (appdata_fusion v)
+{
+    v2f o;
+    PositionFog( v.vertex, o.pos, o.fog );
+	
+	o.uv.xy = v.texcoord;//TRANSFORM_TEX(v.texcoord,_MainTex);
+	o.uv.zw = v.texcoord1;//TRANSFORM_TEX(v.texcoord,_MainTex);
+//#UnlitVertexBody
+
+	
+	float4 screenVertex = mul(glstate.matrix.mvp, v.vertex);
+	
+	o.vertexColor = v.color.xyz;
+	o.normal = v.normal;
+	//o.vertex = v.vertex;
+	o.vertex = v.vertex;
+	o.suv = screenVertex.xy/screenVertex.w;
+	o.tangent = v.tangent;
+	
+	TANGENT_SPACE_ROTATION;
+	//o.lightDirT = mul( rotation, ObjSpaceLightDir( v.vertex ) );
+	//o.viewDirT = mul( rotation, ObjSpaceViewDir( v.vertex ) );		
+	//o.viewDir = ObjSpaceViewDir( v.vertex );
+	
+    // compute&pass data for attenuation/shadows
+    TRANSFER_VERTEX_TO_FRAGMENT(o);
+    return o;
+}
+
+inline float4 IfStatement(float a, float b, float4 more, float4 less, float4 equal, float4 notEqual) {
+	if (a > b) {
+		return more;
+	}
+	else if (a < b) {
+		return less;
+	}
+	else if (a == b) {
+		return equal;
+	}
+	else if (a != b) {
+		return notEqual;
+	}
+}
+
+//Fragment program
+float4 frag (v2f i) : COLOR
+{
+	float4 vertexColor = float4(i.vertexColor,1);
+	float3 binormal = cross( i.normal, i.tangent.xyz ) * i.tangent.w;
+	float3x3 rotation = float3x3( i.tangent.xyz, binormal, i.normal );
+	float3 viewDir = ObjSpaceViewDir(i.vertex);
+	float3 lightDir = ObjSpaceLightDir(i.vertex);
+	float3 viewDirT = mul( rotation, viewDir);	
+	float3 lightDirT = mul( rotation, lightDir);
+	float4 uv = i.uv;
+	float2 ScreenUV = i.suv;
+	float3 surfaceNormal = i.normal;
+	float4 unlitDiffuse = float4(0,0,0,1);
+	float4 specular = float4(0,0,0,1);
+	float gloss = 0.5;
+	float alphaMask = 1;
+	float3 normal = float3(0.5,0.5,1.0);
+	float4 finalColor = float4(0,0,0,1);
+//#UnlitPreFragBody
+//#UnlitFragBody
+	normal =  (normal.rgb*2)-1;
+	float4 lighting = DiffuseLight(lightDirT, normal, unlitDiffuse, LIGHT_ATTENUATION(i) );
+	finalColor = unlitDiffuse;
+	finalColor += float4(viewDir.x,uv.xy,surfaceNormal.x+i.vertexColor.x)*max(min(0.0,unlitDiffuse.x),0)*min(ScreenUV.x,0.0);
+	finalColor.a = alphaMask;
+	return finalColor;
+}
+ENDCG
+        }
+		
+		/////////////////////////////////////////////////////////////////////////////
+        // Pixel lights///////////////////////////////////////////////////////////////
+        Pass {
+//#Blend
+			//AlphaTest Greater 0.5
+            Tags { "LightMode" = "Pixel" }
+CGPROGRAM
+//#TargetSM
+#pragma vertex vert
+#pragma fragment frag
+#pragma multi_compile_builtin
+#pragma fragmentoption ARB_fog_exp2
+#pragma fragmentoption ARB_precision_hint_fastest
+#include "UnityCG.cginc"
+#include "AutoLight.cginc"
+
+struct appdata_fusion {
+    float4 vertex : POSITION;
+    float4 tangent : TANGENT;
+    float3 normal : NORMAL;
+    float2 texcoord : TEXCOORD0;
+	float2 texcoord1 : TEXCOORD1;
+	float4 color : COLOR0;
+};
+
+// Define the structure
+struct v2f {
+    V2F_POS_FOG;
+    LIGHTING_COORDS // <= note no semicolon!
+//#V2F
+	float4 vertex;
+	float4 tangent;
+	float3 normal;
+	float4 uv;
+	float2 suv;
+	float3 vertexColor;
+};
+
+//#CGDefs
+//uniform float4 _MainTex_ST;
+//uniform float4 _BumpMap_ST;
+//sampler2D _BumpMap;
+//sampler2D _MainTex;
+
+// Vertex program
+v2f vert (appdata_fusion v)
+{
+    v2f o;
+	PositionFog( v.vertex, o.pos, o.fog );
+	
+	o.uv.xy = v.texcoord;//TRANSFORM_TEX(v.texcoord,_MainTex);
+	o.uv.zw = v.texcoord1;//TRANSFORM_TEX(v.texcoord,_MainTex);
+//#VertexBody
+	
+	float4 screenVertex = mul(glstate.matrix.mvp, v.vertex);
+	
+	o.vertexColor = v.color.xyz;
+	o.tangent = v.tangent;
+	o.normal = v.normal;
+	o.suv = screenVertex.xy/screenVertex.w;
+	o.vertex = v.vertex;
+	
+	TANGENT_SPACE_ROTATION;
+	//o.lightDirT = mul( rotation, ObjSpaceLightDir( v.vertex ) );
+	//o.viewDir = mul( rotation, ObjSpaceViewDir( v.vertex ) );	
+	//o.viewDir = ObjSpaceViewDir( v.vertex );
+	
+    // compute&pass data for attenuation/shadows
+    TRANSFER_VERTEX_TO_FRAGMENT(o);
+    return o;
+}
+
+// Calculates Blinn-Phong (specular) lighting model
+inline half4 SpecLight( half3 lightDir, half3 viewDir, half3 normal, half4 color, half4 specular, float specK, half atten )
+{
+	#ifndef USING_DIRECTIONAL_LIGHT
+	lightDir = normalize(lightDir);
+	#endif
+	viewDir = normalize(viewDir);
+	half3 h = normalize( lightDir + viewDir );
+	
+	half diffuse = dot( normal, lightDir );
+	
+	float nh = saturate( dot( h, normal ) );
+	float spec = pow( nh, specK ) * color.a;
+	
+	half4 c;
+	c.rgb = (color.rgb * _ModelLightColor0.rgb * diffuse + _SpecularLightColor0.rgb * spec*specular) * (atten * 2);
+	c.a = _SpecularLightColor0.a * spec * atten; // specular passes by default put highlights to overbright
+	//c.a = 0;
+	return c;
+}
+
+//Fragment program
+float4 frag (v2f i) : COLOR
+{
+	float4 vertexColor = float4(i.vertexColor,1);
+	float3 binormal = cross( i.normal, i.tangent.xyz ) * i.tangent.w;
+	float3x3 rotation = float3x3( i.tangent.xyz, binormal, i.normal );
+	float3 viewDir = ObjSpaceViewDir(i.vertex);
+	float3 lightDir = ObjSpaceLightDir(i.vertex);
+	float3 viewDirT = mul( rotation, viewDir);	
+	float3 lightDirT = mul( rotation, lightDir);
+	float4 uv = i.uv;
+	float2 ScreenUV = i.suv;
+	float3 surfaceNormal = i.normal;
+	float4 diffuse = float4(0,0,0,1);
+	float4 specular = float4(1,1,1,1);
+	float gloss = 0.5;
+	float alphaMask = 1;
+	float3 normal = float3(0.5,0.5,1.0);
+	float4 finalColor = float4(0,0,0,1);
+//#PreFragBody
+//#FragBody
+	normal =  (normal.rgb*2)-1;
+	gloss = gloss*50.0;
+	diffuse = SpecLight(lightDirT, viewDirT, normal, diffuse,specular, gloss, LIGHT_ATTENUATION(i));
+	finalColor = diffuse;
+	//Trick these things into thinking they are always being used
+	finalColor += float4(viewDir.x,uv.x,surfaceNormal.x,i.vertexColor.x)*max(min(0.0,diffuse.x),0.0)*min(ScreenUV.x,0.0);
+	finalColor.rgb *= alphaMask;
+	finalColor.a = alphaMask;
+	return finalColor;
+}
+ENDCG
+        }
+		
+    }//EndSubShader
+}
+	
+//#Fallback
+Fallback "Transparent/Cutout/VertexLit", 2
+
+}
+

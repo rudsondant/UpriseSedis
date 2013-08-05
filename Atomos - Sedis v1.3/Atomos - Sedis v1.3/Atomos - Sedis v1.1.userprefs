@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SetaAtivar.js">
+    <Files>
+      <File FileName="Assets\Scripts\CriarCargas3.js" Line="3" Column="24" />
+      <File FileName="Assets\Scripts\Rodar_com_Menu2.js" Line="23" Column="2" />
+      <File FileName="Assets\Scripts\Menu2.js" Line="124" Column="5" />
+      <File FileName="Assets\Scripts\MenuInicial.js" Line="20" Column="2" />
+      <File FileName="Assets\Scripts\SetaAtivar.js" Line="81" Column="30" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

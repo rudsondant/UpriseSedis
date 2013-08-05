@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SetaAtivar.js">
+    <Files>
+      <File FileName="Assets\Scripts\MenuInicial.js" Line="8" Column="35" />
+      <File FileName="Assets\Scripts\Menu2.js" Line="113" Column="43" />
+      <File FileName="Assets\Scripts\Bohr.js" Line="10" Column="2" />
+      <File FileName="Assets\Scripts\SetaAtivar.js" Line="33" Column="27" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
